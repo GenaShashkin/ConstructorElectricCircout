@@ -6,4 +6,8 @@ using UnityEngine.UI;
 public class InvokeButtonEvents : MonoBehaviour
 {
 
+    public void InvokeAllEvents(Button button)
+    {
+        button.onClick.Invoke();
+    }
 }
