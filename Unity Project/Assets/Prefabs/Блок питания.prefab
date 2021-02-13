@@ -170,13 +170,14 @@ GameObject:
   - component: {fileID: 676842697250949943}
   - component: {fileID: 669098270854677043}
   - component: {fileID: 4526402161898768982}
+  - component: {fileID: 5359708264847816754}
   m_Layer: 0
   m_Name: "\u041C\u0438\u043D\u0443\u0441"
-  m_TagString: Untagged
+  m_TagString: minus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1007630449357464460
 RectTransform:
   m_ObjectHideFlags: 0
@@ -279,9 +280,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6036592696026073337}
-        m_TargetAssemblyTypeName: CreateWires, Assembly-CSharp
-        m_MethodName: CreateWire
+      - m_Target: {fileID: 9180536948593107998}
+        m_TargetAssemblyTypeName: StartCreateConnect, Assembly-CSharp
+        m_MethodName: StartConnectMinus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -291,6 +292,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!61 &5359708264847816754
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2825731300487717115}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 158.89, y: 177.48}
+  m_EdgeRadius: 0
 --- !u!1 &4550902458111669410
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +433,8 @@ GameObject:
   - component: {fileID: 7892031180850592299}
   - component: {fileID: 583428328912264358}
   m_Layer: 0
-  m_Name: Button
+  m_Name: "\u041A\u043D\u043E\u043F\u043A\u0430 \u043E\u043A\u043E\u043D\u0447\u0430\u043D\u0438\u044F
+    \u043F\u043E\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -526,6 +554,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 9180536948593107998}
+        m_TargetAssemblyTypeName: StartCreateConnect, Assembly-CSharp
+        m_MethodName: set_isBuilt
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2825731300487717115}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 9084436138472738880}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 5177877280095116906}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -628,8 +692,8 @@ GameObject:
   - component: {fileID: 7322228098617236407}
   - component: {fileID: 7322228098617236406}
   - component: {fileID: 3107592372665304641}
-  - component: {fileID: 243325450576881387}
-  - component: {fileID: 6036592696026073337}
+  - component: {fileID: 3011848363485452654}
+  - component: {fileID: 9180536948593107998}
   m_Layer: 0
   m_Name: "\u0411\u043B\u043E\u043A \u043F\u0438\u0442\u0430\u043D\u0438\u044F"
   m_TagString: Untagged
@@ -682,7 +746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
---- !u!61 &243325450576881387
+--- !u!61 &3011848363485452654
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -695,7 +759,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00131917, y: -0.0026383996}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -706,9 +770,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.50134563, y: 0.5145377}
   m_EdgeRadius: 0
---- !u!114 &6036592696026073337
+--- !u!114 &9180536948593107998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -717,9 +781,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7322228098617236408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 464c0b889976e17488365174700a9025, type: 3}
+  m_Script: {fileID: 11500000, guid: dd0f7a12e87d0eb4e9162e7d32705f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBuilt: 0
+  connector: {fileID: 0}
 --- !u!1 &7322228099625318361
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,13 +880,14 @@ GameObject:
   - component: {fileID: 414235367598250424}
   - component: {fileID: 7465892340835431311}
   - component: {fileID: 5967163237360159137}
+  - component: {fileID: 1645280279767910078}
   m_Layer: 0
-  m_Name: "\u041C\u0438\u043D\u0443\u0441 (1)"
-  m_TagString: Untagged
+  m_Name: "\u041F\u043B\u044E\u0441"
+  m_TagString: plus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &199526727585934694
 RectTransform:
   m_ObjectHideFlags: 0
@@ -922,4 +989,42 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7465892340835431311}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9180536948593107998}
+        m_TargetAssemblyTypeName: StartCreateConnect, Assembly-CSharp
+        m_MethodName: StartConnectPlus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!61 &1645280279767910078
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9084436138472738880}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 158.89, y: 177.48}
+  m_EdgeRadius: 0
