@@ -1,5 +1,8 @@
 
+using UnityEditor.SearchService;
+
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CreateObjectForBuild : MonoBehaviour
 {
@@ -14,5 +17,10 @@ public class CreateObjectForBuild : MonoBehaviour
 
         gameObject = Instantiate(gameObjectForBuild);
         gameObject.transform.position = new Vector3(0, 0, 0);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 }

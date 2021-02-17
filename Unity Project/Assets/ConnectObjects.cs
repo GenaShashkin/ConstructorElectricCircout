@@ -1,25 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
+
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ConnectObjects : MonoBehaviour
 {   /// <summary>
-    /// ConnectionjInProgress  - флаг, показывающий,  идёт ли сейчас подключение объектов;                                  
+    /// флаг, показывающий,  идёт ли сейчас подключение объектов;                                  
     /// </summary>
     public bool ConnectionInProgress;
+
     /// <summary>
-    /// FirstObject, SecondObject - хранят информацию типа GameObject о подключаемых объектах.
+    /// хранят информацию типа GameObject о подключаемых объектах.
     /// </summary>
-    public GameObject FirstObject, SecondObject;
+    public GameObject FirstObject;
+
     /// <summary>
-    /// IsConnectToPlus - флаг, для проверки, идёт ли подключение к плюсу.
+    ///  флаг, для проверки, идёт ли подключение к плюсу.
     /// </summary>
     public bool IsConnectToPlus;
+
+    [SerializeField] private Text debugUIText;
+
     /// <summary>
-    /// camera - хранит главную камеру.
+    /// хранит главную камеру.
     /// </summary>
     private Camera camera;
+
 
     /// <summary>
     /// Получает во время загрузки сцены камеру и записывает значение в camera
@@ -41,39 +47,88 @@ public class ConnectObjects : MonoBehaviour
     /// Метод для создания подключений.
     /// 
     /// Если идёт подключение, то:
-    ///     проверить есть ли второй объект для подключения, если нет то:
-    ///         Проверить нажата ли кнопка ЛКМ, если да то:
-    ///             Выпустить луч из позиции курсора  и проверить тэг (minus or plus) у объекта в который он попал.
+    /// проверить есть ли второй объект для подключения, если нет то:
+    /// Проверить нажата ли кнопка ЛКМ, если да то:
+    /// Выпустить луч из позиции курсора  и проверить тэг (minus or plus) у объекта в который он попал 
+    /// и создать соедение между объектами.
     /// </summary>
     private void CreateConnection()
     {
         if (ConnectionInProgress)
-        {
-            if (!SecondObject)
+        {   
+            if (Input.GetKey(KeyCode.Mouse0))
             {
-                if (Input.GetKey(KeyCode.Mouse0))
-                {            
-                    RaycastHit2D hit2D = Physics2D.Raycast(GetPositionCursor(), Vector3.forward);
-                    
-                    if (hit2D.collider.CompareTag("plus") && IsConnectToPlus)
-                    {
-                        Debug.Log("Connected Plus!");
-                        SecondObject = hit2D.collider.gameObject;
-                        SetDefaultVolums();
-                    }
+                RaycastHit2D hit2D = Physics2D.Raycast(GetPositionCursor(), Vector3.forward);
 
-                    if (hit2D.collider.CompareTag("minus") && !IsConnectToPlus)
-                    {
-                        Debug.Log("Connected Minus!");
-                        SecondObject = hit2D.collider.gameObject;
+                switch (hit2D.collider.tag)
+                {
+                    case "Plus":
+
+                        CreateConnectionPlus(hit2D.collider.gameObject);
                         SetDefaultVolums();
-                    }
+                        break;
+                    case "Minus":
+                        CreateConnectionMinus(hit2D.collider.gameObject);
+                        SetDefaultVolums();
+                        break;
+
 
 
                 }
             }
         }
+        
     }
+
+    /// <summary>
+    /// Создаёт соединение к плюсу.
+    /// </summary>
+    /// <param name="hit">Данные попаданя луча.</param>
+    private void CreateConnectionPlus(GameObject secondObject)
+    {
+       
+        var ParrentSecondObject = secondObject.GetComponent<Kid>().GetParrent();
+        var SecondObjectData = ParrentSecondObject.GetComponent<ObjectData>();
+        var FirstObjectData = FirstObject.GetComponent<ObjectData>();
+
+        if (!SecondObjectData.TryAddObjectInArrayConnectedByPlus(FirstObject))
+        {
+            Debug.Log("Fail!");
+        }
+        if (!FirstObjectData.TryAddObjectInArrayConnectedByPlus(ParrentSecondObject))
+        {
+            Debug.Log("Fail!");
+        }
+
+
+        Debug.Log("Connect by plus done!");
+    }
+
+    /// <summary>
+    ///  Создаёт соединение к плюсу.
+    /// </summary>
+    /// <param name="hit">Данные попадания луча.</param>
+    private void CreateConnectionMinus(GameObject secondObject)
+    {
+         
+        var ParrentSecondObject = secondObject.gameObject.GetComponent<Kid>().GetParrent();
+        var SecondObjectData = ParrentSecondObject.GetComponent<ObjectData>();
+        var FirstObjectData = FirstObject.GetComponent<ObjectData>();
+
+        if (!SecondObjectData.TryAddObjectInArrayConnectedByMinus(FirstObject))
+        {
+            Debug.Log("Fail!");
+        }
+        if (!FirstObjectData.TryAddObjectInArrayConnectedByMinus(ParrentSecondObject))
+        {
+            Debug.Log("Fail!");
+        }
+
+        
+
+        Debug.Log("Connect by Minus done!");
+    }
+
     /// <summary>
     /// Получает координаты курсора.
     /// </summary>
@@ -85,10 +140,13 @@ public class ConnectObjects : MonoBehaviour
         return cursor;
     }
 
+
+    /// <summary>
+    /// Устанавливает нулевые значения полям.
+    /// </summary>
     private void SetDefaultVolums()
     {
         FirstObject = null;
-        SecondObject = null;
         ConnectionInProgress = false;
         IsConnectToPlus = false;
     }

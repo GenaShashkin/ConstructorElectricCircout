@@ -4,8 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - minus
+  - Plus
+  - Minus
   - plus
+  - "\u0411\u043B\u043E\u043A \u043F\u0438\u0442\u0430\u043D\u0438\u044F"
   layers:
   - Default
   - TransparentFX

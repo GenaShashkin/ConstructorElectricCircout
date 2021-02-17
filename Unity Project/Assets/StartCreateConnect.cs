@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class StartCreateConnect : MonoBehaviour
@@ -11,13 +10,16 @@ public class StartCreateConnect : MonoBehaviour
     /// </summary>
     public ConnectObjects connector;
 
+    [SerializeField] private GameObject parrent;
+
     /// <summary>
     /// Перед включении, ищёт объект "ConnectObjects" и записывает его компонент "ConnectObjects"  в connect
-    /// </summary>
+    /// </summary>  
     private void OnEnable()
     {
         connector = GameObject.Find("ConnectObjects").GetComponent<ConnectObjects>();
     }
+
 
     /// <summary>
     /// Метод для старта подключения плюса
@@ -25,21 +27,15 @@ public class StartCreateConnect : MonoBehaviour
     public void StartConnectPlus()
     {
 
-
         connector.IsConnectToPlus = true;
         connector.FirstObject = gameObject;
         connector.ConnectionInProgress = true;
+
+
     }
-        
+
 
     /// <summary>
     /// Метод для старта подключения минуса
     /// </summary>
-    public void StartConnectMinus()
-    {
-        connector.IsConnectToPlus = false;
-        connector.FirstObject = gameObject;
-        connector.ConnectionInProgress = true;
-
-    }
 }
